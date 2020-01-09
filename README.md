@@ -21,39 +21,39 @@ main ->   ε EOL
         | expr EOL 
         | LET ID EQUAL expr EOL
 expr ->   INT
-	      | TRUE
-	      | FALSE
-	      | expr EQUAL expr
-	      | expr NEQ expr
-	      | expr LT expr
-	      | expr GT expr
-	      | expr LE expr
-	      | expr GE expr
-	      | expr PLUS expr
-	      | expr MINUS expr
-	      | expr MUL expr
-	      | expr DIV expr
-	      | LPAREN expr RPAREN
-	      | ID
-	      | IF expr THEN expr ELSE expr
-	      | NOT expr
-	      | expr OR expr
-	      | expr AND expr 
+	    | TRUE
+	    | FALSE
+	    | expr EQUAL expr
+	    | expr NEQ expr
+	    | expr LT expr
+	    | expr GT expr
+	    | expr LE expr
+	    | expr GE expr
+	    | expr PLUS expr
+	    | expr MINUS expr
+	    | expr MUL expr
+	    | expr DIV expr
+	    | LPAREN expr RPAREN
+	    | ID
+	    | IF expr THEN expr ELSE expr
+	    | NOT expr
+	    | expr OR expr
+	    | expr AND expr 
 ```
 
 #### 项目架构
 ```
 miniML |—————— miniML 源代码目录
-							   |—————— lex.mml 词法分析器
-							   |—————— parser.mly 语法分析器
-							   |—————— syntax.ml 语法树生成器
-							   |—————— type.ml 类型检查器
-							   |—————— main.ml 程序入口文件兼语义分析器
-							   |—————— Makefile 工程脚本文件
-			 |—————— build 目标文件目录
-			   				 |—————— mml 目标文件
-			 |—————— Makefile 工程脚本文件
-			 |—————— README.md 说明文档
+				 |—————— lex.mml 词法分析器
+				 |—————— parser.mly 语法分析器
+				 |—————— syntax.ml 语法树生成器
+				 |—————— type.ml 类型检查器
+				 |—————— main.ml 程序入口文件兼语义分析器
+			     |—————— Makefile 工程脚本文件
+	   |—————— build 目标文件目录
+			   	 |—————— mml 目标文件
+	   |—————— Makefile 工程脚本文件
+	   |—————— README.md 说明文档
 ```
 
 #### 使用方法
