@@ -365,7 +365,38 @@ let rec eval e env nest =
   | Not e1 -> (
     match eval e1 env (nest + 1) with VBool b -> debug (VBool (not b)) nest )
 ```
-- `_` 入口函数
+- `print_value v` 输入代码后执行结果
+- `_` 入口函数 
+```Ocaml
+let _ =
+  print_string "     mml version 1.0.0     ";
+  print_endline "\n";
+  let env = Hashtbl.create 100 in
+  let ch = ref stdin in
+  while true do
+    try
+      print_string ">" ;
+      flush stdout ;
+      let lexbuf = Lexing.from_channel !ch in
+      let expr = Parser.main Lex.token lexbuf in
+      match expr with
+      | Empty ->
+          ()
+      | _ ->
+          let result = eval expr env 0 in
+          print_value result ;
+          print_newline () ;
+          flush stdout ;
+          ch := next_channel result !ch
+    with
+    | Lex.Eof ->
+        ch := stdin
+    | Parsing.Parse_error ->
+        print_string "[Error] Parsing error!\n"
+    | Undefined id ->
+        print_string ("[Error] Variable " ^ id ^ " is undefined!\n")
+  done
+```
 
 #### 使用方法
 本项目在macOS系统下进行开发，在Linux系统下测试通过。所有操作应当在项目根目录进行，否则会出现意外错误！
